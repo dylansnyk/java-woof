@@ -1,7 +1,7 @@
 name: Snyk Monitor - Gradle
 on:
   push:
-    branches: [ master ]
+    branches: [ master, snyk-code-test ]
 jobs:
   security:
     runs-on: ubuntu-latest
