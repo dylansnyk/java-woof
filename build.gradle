@@ -19,9 +19,6 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.7'
 }
 
-build.dependsOn shadowJar
-distZip.dependsOn shadowJar
-
 task fetchAgent(type: Download) {
     src 'https://static.snyk.io/resources/runtime/agent/java/snyk-java-runtime-agent.zip'
     dest buildDir
@@ -95,19 +92,11 @@ jar {
     baseName = 'without-deps'
 }
 
-shadowJar {
-    mergeServiceFiles()
-
-    baseName = 'java-woof'
-    classifier = null
-    version = null
-}
-
 repositories {
     mavenCentral()
     jcenter()
 }
 
 wrapper {
-    gradleVersion = "4.10.3"
+    gradleVersion = "6.6.0"
 }
