@@ -1,17 +1,14 @@
 name: Snyk Monitor - Gradle
 on:
   push:
-    branches: [ master ]
+    branches: [ master, snyk-code-test ]
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/gradle-jdk11@master
-        continue-on-error: true
+      - uses: actions/checkout@v2
+      - uses: snyk/actions/setup@master
+      - name: Snyk Code 
+        run: snyk code test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
-          args: --remote-repo-url=woof-monitor --project-name=java-woof
